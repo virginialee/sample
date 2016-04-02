@@ -2,11 +2,9 @@ stage 'Dev'
 node {
   checkout scm
   echo 'Do something?'
-  runUnitTest
+  runUnitTest()
 }
 
-def runUnitTest {
-  node {
-    sh "cd api && ./ci_docker.sh"
-  }
+def runUnitTest() {
+  sh "cd api && ./ci_docker.sh"
 }
