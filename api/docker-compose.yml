@@ -1,0 +1,16 @@
+ci:
+  build: .
+  volumes_from:
+    - ci_output
+  command: ./ci.sh ci postgres
+
+ci_output:
+  image: alpine:3.3
+  volumes:
+    - /root/app/target
+  command: /bin/sh
+
+secret:
+  image: my-ops-secret
+  volumes:
+    - /root/.ssh
