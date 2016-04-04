@@ -1,0 +1,80 @@
+---
+ssh_options: &SSH_OPTIONS
+  :user: &ssh_user ubuntu
+  :keys: &ssh_key_files
+    - ~/.ssh/sample.pem
+    - ~/.ssh/id_rsa
+  :user_known_hosts_file: /dev/null
+  :auth_methods:
+    - publickey
+
+ami:
+  common: &AMI_COMMON
+    :region: ap-southeast-1
+    :keypair_name: sample
+    :user: *ssh_user
+    :key_files: *ssh_key_files
+
+  app:
+    <<: *AMI_COMMON
+    :tags:
+      Name: 'Sample App Base Image'
+    :image_name: Sample App Image
+    :image_tags:
+      :source_revision: HEAD
+    :launch_permission:
+      -
+        :user_id: '511270546264'
+
+  build_agent_docker:
+    <<: *AMI_COMMON
+    :image_name: Sample Build Agent Docker Image
+    :source_ami: ami-80874de3
+    :launch_permission:
+      -
+        :user_id: '511270546264'
+    :no_cleanup: true
+
+provision:
+  chef_secret:
+    :bucket_name: myob-sample
+    :bucket_key: sample-secret
+    :bucket_region: ap-southeast-1
+    :data_bag_path: ./chef_repo/data_bags
+
+  chef_runner: &CHEF_RUNNER
+    :chef_repo:
+      :path: ./chef_repo
+      :remote_path: /opt/chef-repo
+      :excludes:
+        - .git
+        - .gitignore
+        - .idea
+        - vendor_cookbooks
+    :chef:
+      :version: 12.4.3
+    :ssh_options: *SSH_OPTIONS
+
+  app:
+    chef_runner:
+      <<: *CHEF_RUNNER
+      :servers:
+        - :host:
+          :chef:
+            :run_list: recipe[sample::app]
+    ssh:
+      :host:
+      :user: *ssh_user
+      :key_files: *ssh_key_files
+    scp:
+      :dir: "."
+      :source: target/universal/sample-1.0-SNAPSHOT.zip
+      :target: /tmp/sample-1.0-SNAPSHOT.zip
+
+  build_agent_docker:
+    chef_runner:
+      <<: *CHEF_RUNNER
+      :servers:
+        - :host:
+          :chef:
+            :run_list: recipe[sample::build_agent_docker]

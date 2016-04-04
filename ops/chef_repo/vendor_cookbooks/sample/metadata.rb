@@ -1,0 +1,16 @@
+name             'sample'
+license          'All rights reserved'
+description      'Installs/Configures sample'
+version          '1.0.0'
+
+depends 'java'
+depends 'git'
+depends 'nodejs'
+depends 'supervisor'
+depends 'myob-base'
+depends 'myob-nginx'
+depends 'myob-splunk'
+depends 'awscli'
+depends 'myob-app-base'
+depends 'myob-newrelic'
+

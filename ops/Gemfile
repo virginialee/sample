@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'platform_ops', :git => 'git@github.com:MYOB-Technology/platform_ops.git'
+gem 'aws_helpers', :git => 'https://github.com/MYOB-Technology/aws_helpers.git', :branch => 'rewrite'
+gem 'chef_runner', :git => 'https://github.com/MYOB-Technology/chef_runner.git'
+gem 'rake'

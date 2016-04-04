@@ -2,7 +2,7 @@ ci:
   build: .
   volumes_from:
     - ci_output
-  command: ./ci.sh ci postgres
+  command: ./ci.sh ci
 
 ci_output:
   image: alpine:3.3

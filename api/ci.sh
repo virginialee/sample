@@ -2,17 +2,15 @@
 
 set -ex
 
-if [ $# -ne 2 ]
+if [ $# -ne 1 ]
   then
-    echo "You must provide env and dbHost arguments"
+    echo "You must provide env argument"
     exit 1
 fi
 
 env=$1
-dbHost=$2
 
 activator clean
 activator compile
-activator db-migrate -Dflyway.url=jdbc:postgresql://${dbHost}:5432/coa
 activator check
 activator -Denv=${env:-ci} report

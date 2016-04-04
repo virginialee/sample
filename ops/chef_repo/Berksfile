@@ -1,0 +1,10 @@
+source "https://supermarket.chef.io"
+
+cookbook "myob-app-base", git: "git@github.com:MYOB-Technology/platform-cookbooks.git", protocol: :ssh, rel: "myob-app-base"
+
+cookbook "myob-nginx", git: "git@github.com:MYOB-Technology/platform-cookbooks.git", protocol: :ssh, rel: "myob-nginx"
+cookbook "myob-base", git: "git@github.com:MYOB-Technology/platform-cookbooks.git", protocol: :ssh, rel: "myob-base"
+cookbook "myob-splunk", git: "git@github.com:MYOB-Technology/platform-cookbooks.git", protocol: :ssh, rel: "myob-splunk"
+cookbook "myob-newrelic", git: "git@github.com:MYOB-Technology/platform-cookbooks.git", protocol: :ssh, rel: "myob-newrelic"
+
+cookbook 'sample', :path => 'vendor_cookbooks/sample'

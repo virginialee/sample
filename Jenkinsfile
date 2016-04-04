@@ -1,5 +1,5 @@
 stage 'Dev'
-node {
+node('cloud') {
   checkout scm
   echo 'Do something?'
   runUnitTest()

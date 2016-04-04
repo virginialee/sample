@@ -1,0 +1,112 @@
+DEPENDENCIES
+  myob-app-base
+    git: git@github.com:MYOB-Technology/platform-cookbooks.git
+    revision: 10b618360e0152ea350a3d04c47691be3e2152ae
+    rel: myob-app-base
+  myob-base
+    git: git@github.com:MYOB-Technology/platform-cookbooks.git
+    revision: 10b618360e0152ea350a3d04c47691be3e2152ae
+    rel: myob-base
+  myob-newrelic
+    git: git@github.com:MYOB-Technology/platform-cookbooks.git
+    revision: 10b618360e0152ea350a3d04c47691be3e2152ae
+    rel: myob-newrelic
+  myob-nginx
+    git: git@github.com:MYOB-Technology/platform-cookbooks.git
+    revision: 10b618360e0152ea350a3d04c47691be3e2152ae
+    rel: myob-nginx
+  myob-splunk
+    git: git@github.com:MYOB-Technology/platform-cookbooks.git
+    revision: 10b618360e0152ea350a3d04c47691be3e2152ae
+    rel: myob-splunk
+  sample
+    path: vendor_cookbooks/sample
+
+GRAPH
+  apt (2.9.2)
+  apt-upgrade-once (0.2.1)
+  ark (1.0.1)
+    build-essential (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+    windows (>= 0.0.0)
+  awscli (1.1.2)
+    python (~> 1.4)
+  build-essential (3.2.0)
+    seven_zip (>= 0.0.0)
+  chef_handler (1.3.0)
+  cloudwatch_monitoring (1.2.0)
+    cron (>= 0.0.0)
+  cron (1.7.6)
+  curl (2.0.1)
+  dmg (2.3.0)
+  git (4.4.1)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    windows (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  homebrew (2.1.0)
+    build-essential (>= 2.1.2)
+  java (1.39.0)
+    apt (>= 0.0.0)
+  locale (1.0.2)
+  myob-app-base (1.0.0)
+    awscli (>= 0.0.0)
+    myob-base (>= 0.0.0)
+    myob-nginx (>= 0.0.0)
+    myob-splunk (>= 0.0.0)
+    supervisor (>= 0.0.0)
+  myob-base (0.0.1)
+    apt (>= 0.0.0)
+    apt-upgrade-once (>= 0.0.0)
+    cloudwatch_monitoring (>= 0.0.0)
+    locale (>= 0.0.0)
+    myob-splunk (>= 0.0.0)
+    ntp (>= 0.0.0)
+    timezone-ii (>= 0.0.0)
+  myob-newrelic (0.0.1)
+    newrelic (>= 0.0.0)
+    newrelic_meetme_plugin (~> 0.3.0)
+  myob-nginx (0.0.4)
+    apt (>= 0.0.0)
+  myob-splunk (0.0.1)
+  newrelic (2.19.0)
+    apt (~> 2.0)
+    curl (>= 0.0.0)
+    python (>= 0.0.0)
+    yum (~> 3.0)
+  newrelic_meetme_plugin (0.3.0)
+    apt (>= 0.0.0)
+    python (>= 0.0.0)
+    yum (>= 0.0.0)
+  nodejs (2.4.4)
+    apt (>= 0.0.0)
+    ark (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  ntp (1.11.0)
+    windows (>= 1.38.0)
+  python (1.4.6)
+    build-essential (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  sample (1.0.0)
+    awscli (>= 0.0.0)
+    git (>= 0.0.0)
+    java (>= 0.0.0)
+    myob-app-base (>= 0.0.0)
+    myob-base (>= 0.0.0)
+    myob-newrelic (>= 0.0.0)
+    myob-nginx (>= 0.0.0)
+    myob-splunk (>= 0.0.0)
+    nodejs (>= 0.0.0)
+    supervisor (>= 0.0.0)
+  seven_zip (2.0.0)
+    windows (>= 1.2.2)
+  supervisor (0.4.12)
+    python (>= 0.0.0)
+  timezone-ii (0.2.0)
+  windows (1.39.2)
+    chef_handler (>= 0.0.0)
+  yum (3.10.0)
+  yum-epel (0.6.6)
+    yum (~> 3.10.0)
