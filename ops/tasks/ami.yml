@@ -33,7 +33,7 @@ ami:
     :launch_permission:
       -
         :user_id: '511270546264'
-    :no_cleanup: true
+#    :no_cleanup: true
 
 provision:
   chef_secret:

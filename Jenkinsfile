@@ -1,6 +1,6 @@
 stage 'Dev'
 node('cloud') {
-  checkout scm
+  git url: 'https://github.com/virginialee/sample.git'
   echo 'Do something?'
   runUnitTest()
 }
