@@ -21,6 +21,7 @@ ami:
     :source_ami: ami-80874de3
     :image_tags:
       source_revision: HEAD
+    :no_cleanup: true
 
   build_agent_docker:
     <<: *AMI_COMMON
