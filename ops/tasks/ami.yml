@@ -17,22 +17,15 @@ ami:
 
   app:
     <<: *AMI_COMMON
-    :tags:
-      Name: 'Sample App Base Image'
     :image_name: Sample App Image
+    :source_ami: ami-80874de3
     :image_tags:
-      :source_revision: HEAD
-    :launch_permission:
-      -
-        :user_id: '511270546264'
+      source_revision: HEAD
 
   build_agent_docker:
     <<: *AMI_COMMON
     :image_name: Sample Build Agent Docker Image
     :source_ami: ami-80874de3
-    :launch_permission:
-      -
-        :user_id: '511270546264'
 #    :no_cleanup: true
 
 provision:

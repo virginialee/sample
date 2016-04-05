@@ -1,6 +1,22 @@
 GIT
-  remote: git@github.com:MYOB-Technology/platform_ops.git
-  revision: 8a04c665ec7c0d87838eced9152ef210ba7754c0
+  remote: https://github.com/MYOB-Technology/aws_helpers.git
+  revision: da62c0cf72b6b0417cd2075ff2cb672204d77f4f
+  branch: rewrite
+  specs:
+    aws_helpers (3.0.0)
+      aws-sdk-core (~> 2.1)
+
+GIT
+  remote: https://github.com/MYOB-Technology/chef_runner.git
+  revision: b159b2e86cd13397d3b5f3e3dee05a14313308fc
+  specs:
+    chef_runner (1.0.0)
+      semverse (~> 1.2)
+      sshkit (~> 1.7, < 1.9)
+      thor (~> 0.19)
+
+PATH
+  remote: .
   specs:
     platform_ops (1.3.10)
       aws-sdk-core (~> 2.1)
@@ -17,52 +33,34 @@ GIT
       pg
       retryable
 
-GIT
-  remote: https://github.com/MYOB-Technology/aws_helpers.git
-  revision: 2e4eac86cb404a4d71fd12e2ff8ed1a0be9e7a58
-  branch: rewrite
-  specs:
-    aws_helpers (3.0.1)
-      aws-sdk-core (~> 2.1)
-
-GIT
-  remote: https://github.com/MYOB-Technology/chef_runner.git
-  revision: b159b2e86cd13397d3b5f3e3dee05a14313308fc
-  specs:
-    chef_runner (1.0.0)
-      semverse (~> 1.2)
-      sshkit (~> 1.7, < 1.9)
-      thor (~> 0.19)
-
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.4.0)
-    aws-sdk-core (2.2.31)
+    addressable (2.3.8)
+    aws-sdk-core (2.2.29)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.31)
-      aws-sdk-core (= 2.2.31)
-    berkshelf (4.3.1)
-      addressable (~> 2.3, >= 2.3.4)
-      berkshelf-api-client (~> 2.0, >= 2.0.2)
+    aws-sdk-resources (2.2.29)
+      aws-sdk-core (= 2.2.29)
+    berkshelf (4.1.1)
+      addressable (~> 2.3.4)
+      berkshelf-api-client (~> 2.0)
       buff-config (~> 1.0)
       buff-extensions (~> 1.0)
       buff-shell_out (~> 0.1)
       celluloid (= 0.16.0)
       celluloid-io (~> 0.16.1)
       cleanroom (~> 1.0)
-      faraday (~> 0.9)
-      httpclient (~> 2.7)
-      minitar (~> 0.5, >= 0.5.4)
+      faraday (~> 0.9.0)
+      httpclient (~> 2.6.0)
+      minitar (~> 0.5.4)
       octokit (~> 4.0)
       retryable (~> 2.0)
-      ridley (~> 4.5)
+      ridley (~> 4.3)
       solve (~> 2.0)
       thor (~> 0.19)
-    berkshelf-api-client (2.0.2)
+    berkshelf-api-client (2.0.0)
       faraday (~> 0.9.1)
-      httpclient (~> 2.7.0)
-      ridley (~> 4.5)
+      httpclient (~> 2.6.0)
     buff-config (1.0.1)
       buff-extensions (~> 1.0)
       varia_model (~> 0.4)
@@ -77,10 +75,9 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    cfndsl (0.4.4)
-    chef (12.8.1)
-      bundler (>= 1.10)
-      chef-config (= 12.8.1)
+    cfndsl (0.4.0)
+    chef (12.7.2)
+      chef-config (= 12.7.2)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -103,7 +100,7 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef-config (12.8.1)
+    chef-config (12.7.2)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
     chef-zero (4.5.0)
@@ -113,7 +110,9 @@ GEM
       rack
       uuidtools (~> 2.1)
     cleanroom (1.0.0)
+    coderay (1.1.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -123,13 +122,12 @@ GEM
     hashie (3.4.3)
     highline (1.7.8)
     hitimes (1.2.3)
-    httpclient (2.7.1)
-    ipaddress (0.8.3)
-    jmespath (1.2.3)
-      json_pure (>= 1.8.1)
+    httpclient (2.6.0.1)
+    ipaddress (0.8.2)
+    jmespath (1.1.3)
     json (1.8.3)
-    json_pure (1.8.3)
     libyajl2 (1.2.0)
+    method_source (0.8.2)
     minitar (0.5.4)
     mixlib-authentication (1.4.0)
       mixlib-log
@@ -140,12 +138,12 @@ GEM
     mixlib-config (2.2.1)
     mixlib-log (1.6.0)
     mixlib-shellout (2.2.6)
-    molinillo (0.4.4)
+    molinillo (0.2.3)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.1.1)
+    net-ssh (3.0.2)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     net-ssh-multi (1.2.1)
@@ -154,9 +152,9 @@ GEM
     net-telnet (0.1.1)
     netaddr (1.5.1)
     nio4r (1.2.1)
-    octokit (4.3.0)
-      sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.13.0)
+    octokit (4.2.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
+    ohai (8.10.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -165,16 +163,20 @@ GEM
       mixlib-config (~> 2.0)
       mixlib-log
       mixlib-shellout (~> 2.0)
-      plist (~> 3.1)
+      rake (~> 10.1)
       systemu (~> 2.6.4)
       wmi-lite (~> 1.0)
     pg (0.18.4)
     plist (3.1.0)
     proxifier (1.0.3)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
-    rake (11.1.2)
+    rake (10.5.0)
     retryable (2.0.3)
-    ridley (4.5.0)
+    ridley (4.4.2)
       addressable
       buff-config (~> 1.0)
       buff-extensions (~> 1.0)
@@ -182,11 +184,11 @@ GEM
       buff-shell_out (~> 0.1)
       celluloid (~> 0.16.0)
       celluloid-io (~> 0.16.1)
-      chef-config (>= 12.5.0)
+      chef-config
       erubis
       faraday (~> 0.9.0)
       hashie (>= 2.0.2, < 4.0.0)
-      httpclient (~> 2.7)
+      httpclient (~> 2.6)
       json (>= 1.7.7)
       mixlib-authentication (>= 1.3.0)
       retryable (~> 2.0)
@@ -196,7 +198,7 @@ GEM
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.4)
+    rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -211,22 +213,28 @@ GEM
     rspec_junit_formatter (0.2.3)
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
-    sawyer (0.7.0)
-      addressable (>= 2.3.5, < 2.5)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    serverspec (2.31.1)
+    serverspec (2.29.2)
       multi_json
       rspec (~> 3.0)
       rspec-its
-      specinfra (~> 2.53)
+      specinfra (~> 2.48)
     sfl (2.2)
-    solve (2.0.3)
-      molinillo (~> 0.4.2)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    slop (3.6.0)
+    solve (2.0.2)
+      molinillo (~> 0.2.3)
       semverse (~> 1.1)
-    specinfra (2.56.0)
+    specinfra (2.51.0)
       net-scp
-      net-ssh (>= 2.7, < 4.0)
+      net-ssh (>= 2.7, < 3.1)
       net-telnet
       sfl
     sshkit (1.8.1)
@@ -250,7 +258,10 @@ DEPENDENCIES
   aws_helpers!
   chef_runner!
   platform_ops!
+  pry
   rake
+  rspec
+  simplecov
 
 BUNDLED WITH
    1.11.2

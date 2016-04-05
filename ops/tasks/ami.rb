@@ -11,16 +11,7 @@ namespace :ami do
   desc 'Build an app AMI'
   task :app, [:source_revision] do |_t, args|
     config = load_config(__FILE__)
-    config['ami']['app'][:image_tags][:source_revision] = args[:source_revision]
-
-    # find the latest app base AMI
-    image_tags = config['ami']['app'][:tags]
-    ami_params = config['ami']['app'][:tags].merge({ region: config['ami']['app'][:region] })
-    images = PlatformOps::AmiFinder.new(ami_params).find_by_tags(image_tags)
-    raise "Cannot find image of #{image_tags}" unless images.size > 0
-    app_base_ami = images.max_by { |image| Date.parse(image.creation_date) }.image_id
-    p "Found the latest image #{app_base_ami} for #{image_tags}"
-    config['ami']['app'][:source_ami] = app_base_ami
+    config['ami']['app'][:image_tags][:source_revision] = args[:source_revision] if args[:source_revision]
 
     build_app_ami(config)
   end

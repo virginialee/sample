@@ -1,0 +1,32 @@
+api_dist:
+  build: ../api
+  volumes_from:
+    - api_dist_output
+  command: /bin/bash -cx "mkdir -p public/assets && echo ${ASSEMBLE_VERSION} > public/assets/version.txt && activator dist"
+
+api_dist_output:
+  image: alpine:3.3
+  volumes:
+    - /root/app/target
+  command: /bin/sh
+
+ops_ami:
+  build: .
+  volumes_from:
+    - secret:ro
+    - api_dist_output:ro
+    - ops_output
+  command: bundle exec rake ami:app[${ASSEMBLE_VERSION}]
+
+ops_output:
+  image: alpine:3.3
+  volumes:
+    - /root/app/tasks/out
+  command: /bin/sh
+
+secret:
+  image: my-ops-secret
+  volumes:
+    - /root/.ssh
+    - /root/secrets
+    - /root/.aws

@@ -1,0 +1,8 @@
+$stdout.sync = true
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+task default: 'spec'
+
+require_relative 'tasks/networking'
+require_relative 'tasks/snapshot'

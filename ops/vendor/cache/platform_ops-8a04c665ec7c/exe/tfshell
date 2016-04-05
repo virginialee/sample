@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'platform_ops/tf_shell'
+
+Kernel.exit(PlatformOps::TfShell.new(ARGV.dup).run)

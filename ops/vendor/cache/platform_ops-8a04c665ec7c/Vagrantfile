@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$script = <<SCRIPT
+set -ex
+
+# locale
+sudo locale-gen en_AU.UTF-8
+sudo update-locale LANG=en_AU.UTF-8 LC_ALL=en_AU.UTF-8
+
+# dependencies
+sudo apt-add-repository -y ppa:git-core/ppa
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git wget curl ntp build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev openssl libpq-dev unzip python-pip
+
+# chruby
+wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+tar -xzvf chruby-0.3.9.tar.gz
+rm chruby-0.3.9.tar.gz
+cd chruby-0.3.9/
+sudo make install
+
+# ruby-install
+wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
+tar -xzvf ruby-install-0.5.0.tar.gz
+rm ruby-install-0.5.0.tar.gz
+cd ruby-install-0.5.0/
+sudo make install
+
+# install ruby
+sudo -H -u vagrant ruby-install ruby 2.2.2
+
+# source chruby
+echo 'source /usr/local/share/chruby/chruby.sh' >> /home/vagrant/.bashrc
+echo 'source /usr/local/share/chruby/auto.sh' >> /home/vagrant/.bashrc
+
+# terraform
+curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.6.6/terraform_0.6.6_linux_amd64.zip
+openssl dgst -sha256 terraform.zip | grep '497e9f9ace4c3da9afd8240222f6f29a7209b3a9ac5b143cefe117e41d5985f4' || (echo 'shasum mismatch' && false)
+unzip terraform.zip -d /usr/local/bin
+rm terraform.zip
+
+# awscli
+pip install awscli
+
+SCRIPT
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 4096
+    vb.cpus = 2
+  end
+
+  config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: ".ssh/id_rsa"
+  config.vm.provision "file", source: "~/.ssh/config", destination: ".ssh/config"
+  config.vm.provision "file", source: "~/.aws/credentials", destination: ".aws/credentials"
+  config.vm.provision "file", source: "~/secrets", destination: "secrets"
+
+  # add here if you need more files to copy
+
+  config.vm.provision "shell", inline: $script
+end

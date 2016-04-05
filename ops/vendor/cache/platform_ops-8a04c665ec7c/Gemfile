@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gemspec
+
+gem 'aws_helpers', :git => 'https://github.com/MYOB-Technology/aws_helpers.git', :branch => 'rewrite'
+gem 'chef_runner', :git => 'https://github.com/MYOB-Technology/chef_runner.git'

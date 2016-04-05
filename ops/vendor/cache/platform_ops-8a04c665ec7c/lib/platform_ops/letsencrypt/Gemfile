@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'acme-client'
+gem 'aws-sdk'
+gem 'rake'
+gem 'thor'

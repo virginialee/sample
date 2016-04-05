@@ -1,0 +1,4 @@
+chef_repo/cookbooks
+vendor/cache/*
+!vendor/cache/platform_ops*
+docker_build
