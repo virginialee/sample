@@ -38,10 +38,6 @@ module PlatformOps
       opt[:config] = false # do not load your ~/.ssh/config
       opt[:timeout] = @config[:timeout] if @config[:timeout]
 
-      p 'HERE ' * 5
-      p @config
-      p opt
-
       Net::SSH.start(@config[:host], @config[:user], opt, &block)
     end
 
