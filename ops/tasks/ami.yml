@@ -54,6 +54,8 @@ provision:
     ssh:
       :host:
       :user: *ssh_user
+      :key_files:
+        - ~/.ssh/id_rsa
     scp:
       :dir: "."
       :source: target/universal/sample-1.0-SNAPSHOT.zip
