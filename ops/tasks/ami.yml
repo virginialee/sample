@@ -1,9 +1,6 @@
 ---
 ssh_options: &SSH_OPTIONS
   :user: &ssh_user ubuntu
-  :keys: &ssh_key_files
-    - ~/.ssh/sample.pem
-    - ~/.ssh/id_rsa
   :user_known_hosts_file: /dev/null
   :auth_methods:
     - publickey
@@ -13,7 +10,6 @@ ami:
     :region: ap-southeast-1
     :keypair_name: sample
     :user: *ssh_user
-    :key_files: *ssh_key_files
 
   app:
     <<: *AMI_COMMON
@@ -59,7 +55,6 @@ provision:
     ssh:
       :host:
       :user: *ssh_user
-      :key_files: *ssh_key_files
     scp:
       :dir: "."
       :source: target/universal/sample-1.0-SNAPSHOT.zip
