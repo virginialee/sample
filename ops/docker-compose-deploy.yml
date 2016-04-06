@@ -1,0 +1,13 @@
+ops_deploy:
+  build: .
+  volumes_from:
+    - secret:ro
+  command: bundle exec rake deploy:create[${DEPLOY_VERSION},${DEPLOY_ENVIRONMENT},${DEPLOY_AMI}]
+
+secret:
+  image: my-ops-secret
+  volumes:
+    - /root/.ssh
+    - /root/secrets
+    - /root/.aws
+

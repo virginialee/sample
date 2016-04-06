@@ -1,0 +1,23 @@
+---
+:finder:
+  :region: ap-southeast-1
+  :tags:
+    :Name: Sample App Image
+    :source_revision: 
+
+sit:
+  :deployment_strategy: rolling
+  :region: ap-southeast-1
+  :instance_type: t2.medium
+  :keypair_name: sample
+  :autoscaling_min: 1
+  :autoscaling_max: 1
+  :user_data: ../configs/cloud_configs/user_data_sit.yml
+  :stack_name: sample
+  :resources:
+    :elb_name: sample-elb
+    :app_security_group_name: sample-app-sg
+    :iam_profile_name: sample-iam-role
+    :vpc_name: sample-vpc
+    :app_subnet_name_prefix: sample-app-subnet
+    :sns_alert_name: sample-alert

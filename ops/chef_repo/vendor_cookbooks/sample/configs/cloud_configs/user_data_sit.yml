@@ -1,0 +1,43 @@
+#cloud-config
+preserve_hostname: true
+manage_etc_hosts: false
+bootcmd:
+- cloud-init-per instance my_set_hostname sh -xc "echo $INSTANCE_ID > /etc/hostname; hostname -F /etc/hostname"
+- cloud-init-per instance my_etc_hosts sh -xc "sed -i -e '/^127.0.1.1/d' /etc/hosts; echo 127.0.1.1 $INSTANCE_ID $INSTANCE_ID >> /etc/hosts"
+write_files:
+- content: |
+   {
+     "run_list": ["recipe[sample::app_start]"],
+     "myob-nginx": {
+       "proxy_protocol": {
+         "enabled": true,
+         "load_balancers": ["192.168.104.0/28","192.168.104.16/28"]
+       }
+     },
+     "myob-splunk": {
+       "index": "sample-dev"
+     },
+     "sample": {
+       "cloudwatch_env": "sit",
+       "db_env": "non-prod",
+       "idam_env": "non-prod",
+       "nginx_env": "non-prod",
+       "play_env": "non-prod",
+       "properties": {
+         "config.resource": "sit/application.conf",
+         "logger.resource": "sit/logback.xml"
+       },
+        "jvm_configuration": [
+          "server",
+          "Xms512M",
+          "Xmx2048M",
+          "javaagent:../newrelic/newrelic.jar",
+          "Dnewrelic.config.app_name=Sample-SIT"
+        ]
+     }
+   }
+  path: /tmp/node.json
+runcmd:
+- aws s3 cp "s3://myob-sample/sample-secret" /tmp
+- cd /opt/chef-repo && chef-client -z --config /opt/chef_client_config.rb --json-attributes /tmp/node.json --log_level info
+- rm /tmp/sample-secret

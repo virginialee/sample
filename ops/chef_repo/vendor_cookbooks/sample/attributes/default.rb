@@ -1,6 +1,5 @@
 #User
 default['sample']['app_user'] = 'ubuntu'
-default['sample']['db_env'] = 'non-prod'
 default['sample']['nginx_env'] = 'non-prod'
 default['sample']['play_env'] = 'non-prod'
 
