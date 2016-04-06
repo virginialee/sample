@@ -8,7 +8,6 @@ ssh_options: &SSH_OPTIONS
 ami:
   common: &AMI_COMMON
     :region: ap-southeast-1
-    :keypair_name: sample
     :user: *ssh_user
 
   app:
@@ -23,7 +22,7 @@ ami:
     <<: *AMI_COMMON
     :image_name: Sample Build Agent Docker Image
     :source_ami: ami-80874de3
-#    :no_cleanup: true
+    :no_cleanup: true
 
 provision:
   chef_secret:
