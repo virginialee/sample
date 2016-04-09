@@ -16,5 +16,5 @@ def runUnitTest() {
 }
 
 def buildAmi() {
-  sh "cd ops && ./assemble_docker.sh"
+  sh "cd ops && ./assemble_docker.sh ${env.BUILD_NUMBER}"
 }
